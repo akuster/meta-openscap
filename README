@@ -1,0 +1,9 @@
+meta-openscap
+
+
+Patches
+=======
+When sending single patches, please using something like:
+'git send-email -1 -M --to akuster808@gmail.com --subject-prefix=meta-openscap][PATCH'
+
+Maintainer: Armin Kuster <akuster808@gmail.com>
