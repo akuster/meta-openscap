@@ -7,6 +7,7 @@ LICENSE = "MIT"
 
 SRCREV = "7147871d7f37d408c0dd7720ef0fd3ec1b54ad98"
 SRC_URI = "git://github.com/akuster/oe-scap.git"
+SRC_URI += "file://run_cve.sh"
 
 S = "${WORKDIR}/git"
 
