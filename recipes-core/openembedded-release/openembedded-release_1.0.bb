@@ -11,10 +11,8 @@ do_unpack[noexec] = "1"
 do_patch[noexec] = "1"
 do_configure[noexec] = "1"
 
-OE_RELEASE_FIELDS = "VERSION PRETTY_NAME"
-
 VERSION = "0"
-PRETTY_NAME = "${DISTRO_NAME} ${VERSION}"
+RELEASE_NAME = "${DISTRO_NAME} ${DISTRO} ${VERSION}"
 
 def sanitise_version(ver):
     ret = ver.replace('+', '-').replace(' ','_')
@@ -22,13 +20,11 @@ def sanitise_version(ver):
 
 python do_compile () {
     import shutil
+    release_name = d.getVar('RELEASE_NAME')		 
     with open(d.expand('${B}/openemebedded-release'), 'w') as f:
-        for field in d.getVar('OE_RELEASE_FIELDS', True).split():
-            value = d.getVar(field, True)
-            if value:
-                f.write('{0}="{1}"\n'.format(field, value))
+        f.write('%s\n' % release_name)
 }
-do_compile[vardeps] += "${OE_RELEASE_FIELDS}"
+do_compile[vardeps] += "${RELEASE_NAME}"
 
 do_install () {
     install -d ${D}${sysconfdir}
