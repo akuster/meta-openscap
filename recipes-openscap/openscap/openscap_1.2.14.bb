@@ -6,14 +6,14 @@ HOME_URL = "https://www.open-scap.org/tools/openscap-base/"
 LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
 LICENSE = "LGPL-2.1"
 
-DEPENDS = "autoconf-archive pkgconfig gconf procps curl libxml2 \
+DEPENDS = "autoconf-archive pkgconfig gconf procps curl libxml2 rpm \
           libxslt libcap swig swig-native"
 
 DEPENDS_class-native = "autoconf-archive-native pkgconfig-native swig-native curl-native libxml2-native libxslt-native dpkg-native libgcrypt-native nss-native"
 
 DEPENDS_append_libc-musl = " musl-fts"
 
-SRCREV = "dad9d92d1198196ba214aec956d46872fa1b9995"
+SRCREV = "7a924c0eea10d05f512660192c8c4aef447801a6"
 SRC_URI = "git://github.com/akuster/openscap.git;branch=oe \
            file://crypto_pkgconfig.patch \
            file://musl_build_fix.patch \
@@ -80,7 +80,7 @@ do_install_ptest() {
 
 FILES_${PN} += "${PYTHON_SITEPACKAGES_DIR}"
 
-RDEPENDS_${PN} += "libxml2"
+RDEPENDS_${PN} += "libxml2 rpm"
 RDEPENDS_${PN}_libc-musl = "musl-fts-dev"
 
 BBCLASSEXTEND = "native"
