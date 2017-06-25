@@ -7,7 +7,13 @@ LICENSE = "MIT"
 
 SRCREV = "7147871d7f37d408c0dd7720ef0fd3ec1b54ad98"
 SRC_URI = "git://github.com/akuster/oe-scap.git"
-SRC_URI += "file://run_cve.sh"
+SRC_URI += " \
+	file://run_cve.sh \
+	file://run_test.sh \
+	file://OpenEmbedded_nodistro_0.xml \
+        file://OpenEmbedded_nodistro_0.xccdf.xml \
+"
+	
 
 S = "${WORKDIR}/git"
 
@@ -16,6 +22,10 @@ do_compile[noexec] = "1"
 
 do_install () {
 	install -d ${D}/${datadir}/oe-scap
+	install ${WORKDIR}/run_cve.sh ${D}/${datadir}/oe-scap/.
+	install ${WORKDIR}/run_test.sh ${D}/${datadir}/oe-scap/.
+	install ${WORKDIR}/OpenEmbedded_nodistro_0.xml ${D}/${datadir}/oe-scap/.
+	install ${WORKDIR}/OpenEmbedded_nodistro_0.xccdf.xml ${D}/${datadir}/oe-scap/.
 	cp ${S}/* ${D}/${datadir}/oe-scap/.
 }
 
